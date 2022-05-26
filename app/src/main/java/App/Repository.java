@@ -38,7 +38,13 @@ public class Repository {
         FileUtil.clear();
     }
 
-    public static void markTask(int id, boolean isCompleted) {
+    public static void markTask(int... ids) {
+        for (int i = 0; i < ids.length; i++) {
+            setTaskState(ids[i], true);
+        }
+    }
+
+    private static void setTaskState(int id, boolean isCompleted) {
         final List<Task> tasks = getTasks();
         for (int i = 0; i < tasks.size(); i++) {
             if (i+1 == id){

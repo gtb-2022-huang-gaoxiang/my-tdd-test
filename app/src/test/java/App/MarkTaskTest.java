@@ -30,11 +30,30 @@ public class MarkTaskTest {
                 "# Completed",
                 "3 Task003"
         );
-        Repository.markTask(3, true);
+        Repository.markTask(3);
 
         final List<String> taskLines = Repository.getTaskLines();
 
 
         Assert.assertEquals(expected, taskLines);
+    }
+
+    @Test
+    public void should_mark_multiply_tasks(){
+        var expected = List.of(
+                "# To be done",
+                "1 Task001",
+                "# Completed",
+                "2 Task002",
+                "3 Task003",
+                "4 Task004"
+        );
+        Repository.markTask(2,3,4);
+
+        final List<String> taskLines = Repository.getTaskLines();
+
+
+        Assert.assertEquals(expected, taskLines);
+
     }
 }
