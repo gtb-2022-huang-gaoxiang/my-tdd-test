@@ -3,12 +3,39 @@
  */
 package App;
 
+import App.util.FileUtil;
+
+import java.io.File;
+import java.io.IOException;
+import java.util.Arrays;
+import java.util.stream.Collectors;
+
 public class App {
-    public String getGreeting() {
-        return "Hello World!";
+    public static void main(String[] args) {
+        if (args.length <= 0) {
+            return;
+        }
+        if ("init".equals(args[0])) {
+            init();
+        }
+
     }
 
-    public static void main(String[] args) {
-        System.out.println(new App().getGreeting());
+    private static void init() {
+        File dirFile = new File(Constants.TODO_DIR_PATH);
+        File tasksFile = new File(Constants.TASK_FILE_PATH);
+        try {
+            FileUtil.createFileInDir(dirFile, tasksFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private String addTask(String[] args) {
+        if (args.length > 1) {
+            return Arrays.stream(args).skip(1).collect(Collectors.joining(" "));
+        } else {
+            return "";
+        }
     }
 }
