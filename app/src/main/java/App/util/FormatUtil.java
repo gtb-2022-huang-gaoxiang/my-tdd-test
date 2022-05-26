@@ -1,5 +1,6 @@
 package App.util;
 
+import App.Constants;
 import App.Task;
 
 import java.util.ArrayList;
@@ -29,6 +30,12 @@ public class FormatUtil {
             }
         }
 
+        if (tbdList.size() == 1){
+            tbdList.add(Constants.EMPTY);
+        }
+        if (completedList.size() == 1){
+            completedList.add(Constants.EMPTY);
+        }
         tbdList.addAll(completedList);
         return tbdList;
     }

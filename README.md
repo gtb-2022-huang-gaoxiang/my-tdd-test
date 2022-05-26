@@ -5,18 +5,14 @@ Use tdd in this project
 - [x] init
   - [x] create tasks file
 
-- [ ] list tasks
+- [x] list tasks
   - [x] list original text
 - [x] list tasks with id
-  - [ ] list tasks with title
+  - [x] list tasks with title
   
-- [ ] list tasks with id
-- [ ] list format tasks
-
-- [ ] add tasks
+- [x] add tasks
   
-  - [ ] add single word task
-  - [ ] add multiply word tasks
+  - [x] add single word task
 - [ ] mark tasks
   - [ ] mark single task
   - [ ] mark multiply tasks

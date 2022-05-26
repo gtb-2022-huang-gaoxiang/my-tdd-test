@@ -8,7 +8,7 @@ import java.util.List;
 public class ListTasksTest {
     @Test
     public void should_list_tasks_with_id() {
-        final List<String> tasks = Repository.getTasks();
+        final List<String> tasks = Repository.getTaskLines();
 
         var expected = List.of(
                 "# To be done",

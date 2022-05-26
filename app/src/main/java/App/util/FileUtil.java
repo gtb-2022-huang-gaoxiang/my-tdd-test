@@ -34,17 +34,45 @@ public class FileUtil {
         return lines;
     }
 
-    public static void writeNewTask(Task task) {
-        var line = task.toString();
+    public static void writeNewTasks(List<Task> tasks) {
         final BufferedWriter bw;
+
+        try {
+            bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH));
+            for (Task t : tasks) {
+                bw.write(t.toString());
+                bw.newLine();
+            }
+
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void writeNewTask(Task task) {
+        final BufferedWriter bw;
+
         try {
             bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH), StandardOpenOption.APPEND);
-            bw.newLine();
-            bw.write(line);
+            bw.write(task.toString());
             bw.newLine();
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+    public static void clear() {
+        final BufferedWriter bw;
+        try {
+            bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH));
+            bw.write("");
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
 }

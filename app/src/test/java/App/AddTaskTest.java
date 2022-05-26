@@ -22,9 +22,10 @@ public class AddTaskTest {
         );
 
         Repository.addTask("Task005");
-        var tasks = Repository.getTasks();
+        var tasks = Repository.getTaskLines();
 
         Assert.assertEquals(expected, tasks);
     }
+
 
 }
