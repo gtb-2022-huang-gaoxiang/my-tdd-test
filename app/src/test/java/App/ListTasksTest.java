@@ -11,8 +11,10 @@ public class ListTasksTest {
         final List<String> tasks = Repository.getTasks();
 
         var expected = List.of(
+                "# To be done",
                 "1 Task001",
                 "2 Task002",
+                "# Completed",
                 "3 Task003",
                 "4 Task004");
 
