@@ -14,5 +14,6 @@ Use tdd in this project
   
   - [x] add single word task
 - [ ] mark tasks
-  - [ ] mark single task
-  - [ ] mark multiply tasks
+  - [x] mark single task
+  - [x] mark multiply tasks
+  - [ ] unmark single task

@@ -56,4 +56,25 @@ public class MarkTaskTest {
         Assert.assertEquals(expected, taskLines);
 
     }
+
+    @Test
+    public void should_unmark_single_tasks(){
+        var expected = List.of(
+                "# To be done",
+                "1 Task001",
+                "2 Task002",
+                "# Completed",
+                "3 Task003",
+                "4 Task004"
+        );
+        Repository.markTask(2,3,4);
+        Repository.unmarkTask(2);
+
+
+        final List<String> taskLines = Repository.getTaskLines();
+
+
+        Assert.assertEquals(expected, taskLines);
+
+    }
 }

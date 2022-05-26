@@ -54,4 +54,11 @@ public class Repository {
 
         FileUtil.writeNewTasks(tasks);
     }
+
+    public static void unmarkTask(int... ids) {
+        for (int i = 0; i < ids.length; i++) {
+            setTaskState(ids[i], false);
+        }
+
+    }
 }
