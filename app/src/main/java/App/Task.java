@@ -9,6 +9,11 @@ public class Task {
         this.name = name;
     }
 
+    public Task(String name) {
+        this.isCompleted = false;
+        this.name = name;
+    }
+
     public boolean isCompleted() {
         return isCompleted;
     }
@@ -23,5 +28,17 @@ public class Task {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public String toString() {
+        String result;
+        if (isCompleted) {
+            result = "* ";
+        } else {
+            result = "+ ";
+        }
+
+        return result + name;
     }
 }

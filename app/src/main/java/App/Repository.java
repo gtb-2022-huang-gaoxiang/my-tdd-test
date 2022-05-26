@@ -27,4 +27,8 @@ public class Repository {
         return FormatUtil.getLinesFromTasks(tasks);
     }
 
+    public static void addTask(String name) {
+        var task = new Task(name);
+        FileUtil.writeNewTask(task);
+    }
 }
