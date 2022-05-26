@@ -59,6 +59,5 @@ public class Repository {
         for (int i = 0; i < ids.length; i++) {
             setTaskState(ids[i], false);
         }
-
     }
 }
