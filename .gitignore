@@ -56,3 +56,5 @@ crashlytics-build.properties
 fabric.properties
 
 .idea/
+# Ignore Gradle build output directory
+build
