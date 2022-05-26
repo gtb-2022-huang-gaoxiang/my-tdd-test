@@ -7,8 +7,6 @@ import App.util.FileUtil;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 public class App {
     public static void main(String[] args) {
@@ -31,11 +29,4 @@ public class App {
         }
     }
 
-    private String addTask(String[] args) {
-        if (args.length > 1) {
-            return Arrays.stream(args).skip(1).collect(Collectors.joining(" "));
-        } else {
-            return "";
-        }
-    }
 }
