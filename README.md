@@ -2,12 +2,14 @@
 Use tdd in this project
 
 # Tasking
-- [ ] init
-  - [ ] create tasks file
+- [x] init
+  - [x] create tasks file
 
 - [ ] list tasks
-  - [ ] list original text
-
+  - [x] list original text
+- [x] list tasks with id
+  - [ ] list tasks with title
+  
 - [ ] list tasks with id
 - [ ] list format tasks
 

@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.List;
 
 public class FileUtil {
@@ -18,12 +19,15 @@ public class FileUtil {
         }
     }
 
-    public static List<String> getTasks() {
+    public static List<String> getLinesFromFile() {
+        List<String> lines = new ArrayList<>();
+
         try {
-            return Files.readAllLines(Path.of(Constants.TASK_FILE_PATH), StandardCharsets.UTF_8);
+            lines =  Files.readAllLines(Path.of(Constants.TASK_FILE_PATH), StandardCharsets.UTF_8);
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return null;
+
+        return lines;
     }
 }
