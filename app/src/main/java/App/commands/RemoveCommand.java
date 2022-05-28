@@ -1,4 +1,6 @@
-package App;
+package App.commands;
+
+import App.Repository;
 
 public class RemoveCommand extends BaseCommand{
     public RemoveCommand(Repository repository) {

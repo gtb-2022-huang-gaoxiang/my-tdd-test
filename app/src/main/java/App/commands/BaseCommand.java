@@ -1,4 +1,6 @@
-package App;
+package App.commands;
+
+import App.Repository;
 
 public class BaseCommand {
     private Repository repository;

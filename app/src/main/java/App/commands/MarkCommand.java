@@ -1,4 +1,6 @@
-package App;
+package App.commands;
+
+import App.Repository;
 
 public class MarkCommand extends BaseCommand{
     public MarkCommand(Repository repository) {

@@ -1,5 +1,6 @@
 package App;
 
+import App.commands.InitCommand;
 import org.junit.Test;
 
 import static org.mockito.Mockito.mock;

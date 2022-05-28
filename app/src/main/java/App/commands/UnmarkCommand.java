@@ -1,4 +1,6 @@
-package App;
+package App.commands;
+
+import App.Repository;
 
 public class UnmarkCommand extends BaseCommand{
     public UnmarkCommand(Repository repository) {

@@ -1,5 +1,6 @@
 package App;
 
+import App.commands.AddCommand;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InOrder;

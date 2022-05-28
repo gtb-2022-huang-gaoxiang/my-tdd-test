@@ -3,22 +3,32 @@
  */
 package App;
 
+import App.commands.*;
+
 import java.util.Arrays;
 
 public class App {
+
+    private Repository repository;
+
     public static void main(String[] args) {
         new App().run(args);
     }
 
-    public void run(String... args){
+    public void run(String... args) {
+        repository = new Repository();
+
         if (args.length <= 0) {
             return;
         }
-        final Repository repository = new Repository();
-        String cmd = args[0];
-        String[] restCmds = Arrays.copyOfRange(args,1,args.length);
+
+        runCommand(args);
+    }
+
+    private void runCommand(String[] args) {
+        String[] parameters = Arrays.copyOfRange(args, 1, args.length);
         int[] ids;
-        switch (cmd){
+        switch (args[0]) {
             case "init":
                 final InitCommand initCommand = new InitCommand(repository);
                 initCommand.execute();
@@ -29,22 +39,24 @@ public class App {
                 break;
             case "add":
                 final AddCommand addCommand = new AddCommand(repository);
-                addCommand.execute(restCmds);
+                addCommand.execute(parameters);
                 break;
             case "mark":
                 final MarkCommand markCommand = new MarkCommand(repository);
-                ids = Arrays.stream(restCmds).filter(item -> item.matches("\\d+")).mapToInt(Integer::parseInt).toArray();
+                ids = Arrays.stream(parameters).filter(item -> item.matches("\\d+")).mapToInt(Integer::parseInt).toArray();
                 markCommand.execute(ids);
                 break;
             case "unmark":
                 final UnmarkCommand unmarkCommand = new UnmarkCommand(repository);
-                ids = Arrays.stream(restCmds).filter(item -> item.matches("\\d+")).mapToInt(Integer::parseInt).toArray();
+                ids = Arrays.stream(parameters).filter(item -> item.matches("\\d+")).mapToInt(Integer::parseInt).toArray();
                 unmarkCommand.execute(ids);
                 break;
             case "remove":
                 final RemoveCommand removeCommand = new RemoveCommand(repository);
-                ids = Arrays.stream(restCmds).filter(item -> item.matches("\\d+")).mapToInt(Integer::parseInt).toArray();
+                ids = Arrays.stream(parameters).filter(item -> item.matches("\\d+")).mapToInt(Integer::parseInt).toArray();
                 removeCommand.execute(ids);
+                break;
+            default:
                 break;
         }
     }
