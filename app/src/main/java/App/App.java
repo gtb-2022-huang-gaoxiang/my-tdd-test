@@ -57,6 +57,8 @@ public class App {
                 removeCommand.execute(ids);
                 break;
             default:
+                final UnknownCommand unknownCommand = new UnknownCommand();
+                unknownCommand.execute(args[0]);
                 break;
         }
     }
