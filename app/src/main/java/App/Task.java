@@ -4,9 +4,6 @@ public class Task {
     private boolean isCompleted;
     private String name;
 
-    public Task() {
-    }
-
     public Task(boolean isCompleted, String name) {
         this.isCompleted = isCompleted;
         this.name = name;
@@ -27,10 +24,6 @@ public class Task {
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     @Override
