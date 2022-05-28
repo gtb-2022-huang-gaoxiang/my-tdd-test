@@ -87,4 +87,8 @@ public class Repository {
     public void remove(int... ids) {
         FileUtil.deleteById(ids);
     }
+
+    public List<Task> getAllTasks() {
+        return null;
+    }
 }

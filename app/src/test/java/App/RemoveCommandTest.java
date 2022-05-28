@@ -25,9 +25,10 @@ public class RemoveCommandTest {
 
         verify(repository).remove(1);
     }
+
     @Test
     public void should_add_multiple_word_task() {
-        final var ids = new int[]{1,2,3};
+        final var ids = new int[]{1, 2, 3};
         final RemoveCommand command = new RemoveCommand(repository);
 
         for (int i = 0; i < ids.length; i++) {

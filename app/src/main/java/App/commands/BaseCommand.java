@@ -2,7 +2,7 @@ package App.commands;
 
 import App.Repository;
 
-public class BaseCommand {
+public abstract class BaseCommand {
     private Repository repository;
 
     public BaseCommand(Repository repository) {
