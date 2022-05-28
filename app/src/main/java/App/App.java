@@ -41,6 +41,11 @@ public class App {
                 ids = Arrays.stream(restCmds).filter(item -> item.matches("\\d+")).mapToInt(Integer::parseInt).toArray();
                 unmarkCommand.execute(ids);
                 break;
+            case "remove":
+                final RemoveCommand removeCommand = new RemoveCommand(repository);
+                ids = Arrays.stream(restCmds).filter(item -> item.matches("\\d+")).mapToInt(Integer::parseInt).toArray();
+                removeCommand.execute(ids);
+                break;
         }
     }
 

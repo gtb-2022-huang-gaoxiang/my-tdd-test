@@ -15,7 +15,7 @@ public class MarkTaskTest {
                 "Task003",
                 "Task004");
 
-        Repository.reset();
+        new Repository().reset();
 
         initTasksList.forEach(o -> new Repository().addTask(o));
     }

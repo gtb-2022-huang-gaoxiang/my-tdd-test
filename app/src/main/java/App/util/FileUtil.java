@@ -43,7 +43,7 @@ public class FileUtil {
         final BufferedWriter bw;
         try {
             bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH));
-            for(String l: lines){
+            for (String l : lines) {
                 bw.write(l);
                 bw.newLine();
             }
@@ -82,23 +82,25 @@ public class FileUtil {
     }
 
 
-    public static void deleteById(int[] ids) {
+    public static void deleteById(int... ids) {
         var lines = getLinesFromFile();
-        List<String> newLines = new ArrayList<>();
-        int index;
+        final var idsList = List.of(ids);
+        List<String> result = new ArrayList<>();
 
-        int lineLength = lines.toArray().length;
-        for (int i = 0; i < ids.length; i++) {
-            index = ids[i] - 1;
-            if (!validIndex(index, lineLength)){
-                newLines.add(lines.get(index));
+        lines.stream()
+                .filter(l -> idsList.stream().noneMatch(idsShouldDelete -> intsContainIndex(lines.indexOf(l) + 1, idsShouldDelete)))
+                .forEach(l -> result.add(l));
+
+        writeLines(result);
+    }
+
+    private static boolean intsContainIndex(int index, int[] ints) {
+        for (int i = 0; i < ints.length; i++) {
+            if (index == ints[i]) {
+                return true;
             }
         }
-
-        writeLines(newLines);
+        return false;
     }
 
-    private static boolean validIndex(int index, int lineLength) {
-        return lineLength > index && index >= 0;
-    }
 }

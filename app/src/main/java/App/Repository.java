@@ -28,10 +28,6 @@ public class Repository {
         return tasks;
     }
 
-    public static void reset() {
-        FileUtil.clear();
-    }
-
     private static void setTaskState(int id, boolean isCompleted) {
         final List<Task> tasks = getTasks();
         for (int i = 0; i < tasks.size(); i++) {
@@ -41,6 +37,10 @@ public class Repository {
         }
 
         FileUtil.writeNewTasks(tasks);
+    }
+
+    public void reset() {
+        FileUtil.clear();
     }
 
     public void unmarkTask(int... ids) {
