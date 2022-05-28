@@ -77,4 +77,8 @@ public class Repository {
         final List<String> line = getTaskLines();
         line.forEach(l -> System.out.println(l));
     }
+
+    public void remove(int... ids) {
+        FileUtil.deleteById(ids);
+    }
 }

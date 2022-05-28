@@ -16,6 +16,6 @@ Use tdd in this project
   - [x] mark multiple tasks
   - [x] unmark single task
   - [x] unmark multiple tasks
-- [ ] remove task
-  - [ ] remove single task
-  - [ ] remove multiple tasks
+- [x] remove task
+  - [x] remove single task
+  - [x] remove multiple tasks

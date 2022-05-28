@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class FileUtil {
 
@@ -35,22 +36,22 @@ public class FileUtil {
     }
 
     public static void writeNewTasks(List<Task> tasks) {
-        writeTasks(tasks);
+        writeLines(tasks.stream().map(t -> t.toString()).collect(Collectors.toList()));
     }
 
-    private static void writeTasks(List<Task> tasks) {
+    private static void writeLines(List<String> lines) {
         final BufferedWriter bw;
         try {
             bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH));
-            for (Task t : tasks) {
-                bw.write(t.toString());
+            for(String l: lines){
+                bw.write(l);
                 bw.newLine();
             }
-
             bw.close();
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public static void appendNewTask(Task task) {
@@ -81,4 +82,23 @@ public class FileUtil {
     }
 
 
+    public static void deleteById(int[] ids) {
+        var lines = getLinesFromFile();
+        List<String> newLines = new ArrayList<>();
+        int index;
+
+        int lineLength = lines.toArray().length;
+        for (int i = 0; i < ids.length; i++) {
+            index = ids[i] - 1;
+            if (!validIndex(index, lineLength)){
+                newLines.add(lines.get(index));
+            }
+        }
+
+        writeLines(newLines);
+    }
+
+    private static boolean validIndex(int index, int lineLength) {
+        return lineLength > index && index >= 0;
+    }
 }
