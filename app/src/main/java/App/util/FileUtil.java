@@ -1,7 +1,6 @@
 package App.util;
 
 import App.constant.Constants;
-import App.Task;
 
 import java.io.BufferedWriter;
 import java.io.File;
@@ -12,7 +11,6 @@ import java.nio.file.Path;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class FileUtil {
 
@@ -35,34 +33,15 @@ public class FileUtil {
         return lines;
     }
 
-    public static void writeNewTasks(List<Task> tasks) {
-        writeLines(tasks.stream().map(t -> t.toString()).collect(Collectors.toList()));
+    public static void appendNewLine(String line) {
+        appendLine(line);
     }
 
-    private static void writeLines(List<String> lines) {
-        final BufferedWriter bw;
-        try {
-            bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH));
-            for (String l : lines) {
-                bw.write(l);
-                bw.newLine();
-            }
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    public static void appendNewTask(Task task) {
-        appendTask(task);
-    }
-
-    private static void appendTask(Task task) {
+    private static void appendLine(String line) {
         final BufferedWriter bw;
         try {
             bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH), StandardOpenOption.APPEND);
-            bw.write(task.toString());
+            bw.write(line);
             bw.newLine();
             bw.close();
         } catch (IOException e) {
@@ -91,7 +70,7 @@ public class FileUtil {
                 .filter(l -> idsList.stream().noneMatch(idsShouldDelete -> intsContainIndex(lines.indexOf(l) + 1, idsShouldDelete)))
                 .forEach(l -> result.add(l));
 
-        writeLines(result);
+        new FileUtil().writeLines(result);
     }
 
     private static boolean intsContainIndex(int index, int[] ints) {
@@ -103,4 +82,18 @@ public class FileUtil {
         return false;
     }
 
+    public static void writeLines(List<String> lines) {
+        final BufferedWriter bw;
+        try {
+            bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH));
+            for (String l : lines) {
+                bw.write(l);
+                bw.newLine();
+            }
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
 }

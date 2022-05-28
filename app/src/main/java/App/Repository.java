@@ -8,6 +8,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Repository {
 
@@ -21,7 +23,7 @@ public class Repository {
             final String name = split[1];
 
             if (Constants.TODO_TAG.equals(isCompletedTag)) {
-                tasks.add(new Task(false,name));
+                tasks.add(new Task(false, name));
             } else {
                 tasks.add(new Task(true, name));
             }
@@ -32,12 +34,15 @@ public class Repository {
     private static void setTaskState(int id, boolean isCompleted) {
         final List<Task> tasks = getTasks();
         for (int i = 0; i < tasks.size(); i++) {
-            if (i+1 == id){
+            if (i + 1 == id) {
                 tasks.get(i).setCompleted(isCompleted);
             }
         }
 
-        FileUtil.writeNewTasks(tasks);
+        final List<String> lines = tasks.stream().
+                flatMap(task -> Stream.of(task.toString()))
+                .collect(Collectors.toList());
+        FileUtil.writeLines(lines);
     }
 
     public void reset() {
@@ -61,7 +66,7 @@ public class Repository {
     }
 
     public void addTask(String name) {
-        FileUtil.appendNewTask(new Task(name));
+        FileUtil.appendNewLine(new Task(name).toString());
     }
 
     public void init() {
