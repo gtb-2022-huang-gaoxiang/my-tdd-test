@@ -35,8 +35,11 @@ public class FileUtil {
     }
 
     public static void writeNewTasks(List<Task> tasks) {
-        final BufferedWriter bw;
+        writeTasks(tasks);
+    }
 
+    private static void writeTasks(List<Task> tasks) {
+        final BufferedWriter bw;
         try {
             bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH));
             for (Task t : tasks) {
@@ -50,9 +53,12 @@ public class FileUtil {
         }
     }
 
-    public static void writeNewTask(Task task) {
-        final BufferedWriter bw;
+    public static void appendNewTask(Task task) {
+        appendTask(task);
+    }
 
+    private static void appendTask(Task task) {
+        final BufferedWriter bw;
         try {
             bw = Files.newBufferedWriter(Path.of(Constants.TASK_FILE_PATH), StandardOpenOption.APPEND);
             bw.write(task.toString());

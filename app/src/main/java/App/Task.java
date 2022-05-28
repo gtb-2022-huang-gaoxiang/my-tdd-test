@@ -4,6 +4,9 @@ public class Task {
     private boolean isCompleted;
     private String name;
 
+    public Task() {
+    }
+
     public Task(boolean isCompleted, String name) {
         this.isCompleted = isCompleted;
         this.name = name;

@@ -3,14 +3,12 @@ package App;
 import App.util.FileUtil;
 import App.util.FormatUtil;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Repository {
-
-    public static List<String> getTaskLines() {
-        return FormatUtil.getLinesFromTasks(getTasks());
-    }
 
     private static List<Task> getTasks() {
         List<String> lines = FileUtil.getLinesFromFile();
@@ -30,18 +28,8 @@ public class Repository {
         return tasks;
     }
 
-    public static void addTask(String name) {
-        FileUtil.writeNewTask(new Task(name));
-    }
-
     public static void reset() {
         FileUtil.clear();
-    }
-
-    public static void markTask(int... ids) {
-        for (int i = 0; i < ids.length; i++) {
-            setTaskState(ids[i], true);
-        }
     }
 
     private static void setTaskState(int id, boolean isCompleted) {
@@ -55,9 +43,38 @@ public class Repository {
         FileUtil.writeNewTasks(tasks);
     }
 
-    public static void unmarkTask(int... ids) {
+    public void unmarkTask(int... ids) {
         for (int i = 0; i < ids.length; i++) {
             setTaskState(ids[i], false);
         }
+    }
+
+    public void markTask(int... ids) {
+        for (int i = 0; i < ids.length; i++) {
+            setTaskState(ids[i], true);
+        }
+    }
+
+    public List<String> getTaskLines() {
+        return FormatUtil.getLinesFromTasks(getTasks());
+    }
+
+    public void addTask(String name) {
+        FileUtil.appendNewTask(new Task(name));
+    }
+
+    public void init() {
+        File dirFile = new File(Constants.TODO_DIR_PATH);
+        File tasksFile = new File(Constants.TASK_FILE_PATH);
+        try {
+            FileUtil.createFileInDir(dirFile, tasksFile);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void list() {
+        final List<String> line = getTaskLines();
+        line.forEach(l -> System.out.println(l));
     }
 }

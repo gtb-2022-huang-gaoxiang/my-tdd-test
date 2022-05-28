@@ -17,7 +17,7 @@ public class MarkTaskTest {
 
         Repository.reset();
 
-        initTasksList.forEach(o -> Repository.addTask(o));
+        initTasksList.forEach(o -> new Repository().addTask(o));
     }
 
     @Test
@@ -30,9 +30,9 @@ public class MarkTaskTest {
                 "# Completed",
                 "3 Task003"
         );
-        Repository.markTask(3);
+        new Repository().markTask(3);
 
-        final List<String> taskLines = Repository.getTaskLines();
+        final List<String> taskLines = new Repository().getTaskLines();
 
 
         Assert.assertEquals(expected, taskLines);
@@ -48,9 +48,9 @@ public class MarkTaskTest {
                 "3 Task003",
                 "4 Task004"
         );
-        Repository.markTask(2,3,4);
+        new Repository().markTask(2,3,4);
 
-        final List<String> taskLines = Repository.getTaskLines();
+        final List<String> taskLines = new Repository().getTaskLines();
 
 
         Assert.assertEquals(expected, taskLines);
@@ -67,11 +67,11 @@ public class MarkTaskTest {
                 "3 Task003",
                 "4 Task004"
         );
-        Repository.markTask(2,3,4);
-        Repository.unmarkTask(2);
+        new Repository().markTask(2,3,4);
+        new Repository().unmarkTask(2);
 
 
-        final List<String> taskLines = Repository.getTaskLines();
+        final List<String> taskLines = new Repository().getTaskLines();
 
 
         Assert.assertEquals(expected, taskLines);
@@ -89,11 +89,11 @@ public class MarkTaskTest {
                 "# Completed",
                 "Empty"
         );
-        Repository.markTask(2,3,4);
-        Repository.unmarkTask(2,3,4);
+        new Repository().markTask(2,3,4);
+        new Repository().unmarkTask(2,3,4);
 
 
-        final List<String> taskLines = Repository.getTaskLines();
+        final List<String> taskLines = new Repository().getTaskLines();
 
 
         Assert.assertEquals(expected, taskLines);
